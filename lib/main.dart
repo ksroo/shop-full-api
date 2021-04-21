@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-
 import 'package:shop_udemy/screens/register/registerScreen.dart';
 import 'package:shop_udemy/screens/search/search_screen.dart';
 import 'package:shop_udemy/screens/shopLayoyt/cubit/cubit.dart';
@@ -20,7 +19,8 @@ void main() async {
   Widget widget;
 
   bool onBoarding = CacheHlper.getData(key: 'onBoarding');
-   token = CacheHlper.getData(key: 'token');
+  token = CacheHlper.getData(key: 'token');
+  print(token);
 
   if (onBoarding != null) {
     if (token != null) {
@@ -44,12 +44,16 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MultiBlocProvider(
-        providers: [
-          BlocProvider(
-            create: (BuildContext context ) => ShopCubit()..getHomeData()..getCategries(),
-          ),
-        ],
-          child: MaterialApp(
+      providers: [
+        BlocProvider(
+          create: (BuildContext context) => ShopCubit()
+            ..getHomeData()
+            ..getCategries()
+            ..getFavorites()
+            ..getUserData(),
+        ),
+      ],
+      child: MaterialApp(
         theme: lightTheme,
         darkTheme: darkTheme,
         home: startWidget,

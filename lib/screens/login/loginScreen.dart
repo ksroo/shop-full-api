@@ -7,6 +7,7 @@ import 'package:shop_udemy/screens/login/cubit/states.dart';
 import 'package:shop_udemy/screens/register/registerScreen.dart';
 import 'package:shop_udemy/screens/shopLayoyt/shopLayOut.dart';
 import 'package:shop_udemy/shared/components/component.dart';
+import 'package:shop_udemy/shared/network/end_points.dart';
 import 'package:shop_udemy/shared/network/local/cache_helper.dart';
 import 'package:shop_udemy/widgets/customElevatedButton.dart';
 import '/widgets/CustomTextFromField.dart';
@@ -29,6 +30,7 @@ class LoginScreen extends StatelessWidget {
               CacheHlper.saveData(
                       key: "token", value: state.loginModel.data.token)
                   .then((value) {
+                token = state.loginModel.data.token;
                 Navigator.pushReplacementNamed(context, ShopLayout.routeName);
               });
             } else {
